@@ -16,9 +16,9 @@ This script automates a post-installation setup for Arch Linux systems focused o
 
 The following groups are installed with pacman.
 
-### Graphical environment
+### Fonts
 
-`hyprland`, `waybar`, `swaybg`, `rofi-wayland`, `kitty`, `dunst`, `xdg-desktop-portal-hyprland`, and `ttf-jetbrains-mono-nerd`.
+`ttf-jetbrains-mono-nerd` and `ttf-iosevka-nerd`.
 
 ### Gaming
 
@@ -90,6 +90,8 @@ The AUR list includes the detected user-facing packages `vesktop`, `oracle-datam
 - Removed the library-style `lib32-mangohud` package from the gaming list.
 - Updated the completion message so it no longer claims that drivers were installed.
 - Corrected the usage instructions to reference `install.sh`.
+- Replaced the graphical-environment package group with a fonts package group.
+- Added `ttf-iosevka-nerd` alongside `ttf-jetbrains-mono-nerd`.
 
 ## Author
 

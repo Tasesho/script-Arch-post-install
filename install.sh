@@ -39,20 +39,14 @@ else
 fi
 
 
-GRAPHICS=(
-    "hyprland"
-    "waybar"
-    "swaybg"
-    "rofi-wayland"
-    "kitty"
-    "dunst"
-    "xdg-desktop-portal-hyprland"
+FONTS=(
     "ttf-jetbrains-mono-nerd"
+    "ttf-iosevka-nerd"
 )
 
-echo -e "${VERDE}Instalando Entorno Grafico...${NC}"
-for g in "${GRAPHICS[@]}"; do
-    instalar "$g"
+echo -e "${VERDE}Instalando fuentes...${NC}"
+for f in "${FONTS[@]}"; do
+    instalar "$f"
 done
 
 
