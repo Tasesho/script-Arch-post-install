@@ -1,41 +1,95 @@
 # Post Installation Arch Script
 
-This script is designed to **automate** the system settings of **Arch Linux**. It is optimized for my workflow in **Hyprland**, software development, and gaming.
+This script automates a post-installation setup for Arch Linux systems focused on Hyprland, software development, gaming, and everyday desktop applications.
 
-## Features
-- **Modular:** Split into blocks (Drivers, Graphics, Gaming, Coding, and AUR).
-- **GPU Optimized:** Specific configuration for **AMD Fiji (GCN 3)** architecture.
-- **Wayland Environment:** Complete installation of Hyprland and customization tools.
-- **Gaming Ready:** Includes Steam, MangoHud, and required multilib libraries.
+## What the script does
 
-## Main Components
-- **Drivers:** Mesa, Vulkan (Radeon), xf86-video-amdgpu.
-- **Environment:** Hyprland, Waybar, Wlogout, Swaync, Kitty.
-- **Coding:** Python, Rust (via rustup), VS Code.
-- **Apps:** Brave Browser, Vesktop (Discord with Wayland support).
+- Enables the `multilib` repository and synchronizes pacman databases.
+- Performs a full system upgrade with pacman.
+- Installs `yay` automatically when it is not already available.
+- Installs packages with pacman using `--needed`, so already-installed packages are skipped.
+- Installs AUR packages with yay using `--needed`.
+- Preserves colored status messages and the final completion banner.
+- Does not install, configure, or manage graphics drivers. Hardware-driver configuration is intentionally outside the scope of this script.
 
-## How to use it?
+## Official repository packages
 
-> **Warning:** Make sure to have a stable internet connection before continuing.
+The following groups are installed with pacman.
 
-1. **Install Git** (If you don't have it):
+### Graphical environment
+
+`hyprland`, `waybar`, `swaybg`, `rofi-wayland`, `kitty`, `dunst`, `xdg-desktop-portal-hyprland`, and `ttf-jetbrains-mono-nerd`.
+
+### Gaming
+
+`steam` and `mangohud`.
+
+### Development
+
+`python`, `python-pip`, and `rustup`.
+
+### Desktop applications and utilities
+
+`7zip`, `alacritty`, `ark`, `bluez`, `bluez-utils`, `btop`, `dolphin`, `fastfetch`, `firefox`, `filelight`, `fwupd`, `git`, `github-cli`, `gwenview`, `haruna`, `kate`, `kcalc`, `kdeconnect`, `konsole`, `meld`, `micro`, `nicotine+`, `networkmanager`, `networkmanager-openvpn`, `obs-studio`, `obsidian`, `openssh`, `partitionmanager`, `pavucontrol`, `pipewire-alsa`, `pipewire-pulse`, `prismlauncher`, `protonup-qt`, `power-profiles-daemon`, `spectacle`, `steam`, `sudo`, `ufw`, `unrar`, `unzip`, `usbutils`, `vim`, `vlc-plugins-all`, `wget`, and `wireplumber`.
+
+## AUR packages
+
+The following packages are installed with yay:
+
+```text
+visual-studio-code-bin
+wlogout
+swww
+swaync
+brave-bin
+vesktop
+oracle-datamodeler
+psysonic
+vscodium-bin
+```
+
+The AUR list includes the detected user-facing packages `vesktop`, `oracle-datamodeler`, `psysonic`, and `vscodium-bin`. `vesktop` and `obs-studio` are both included for communication and recording/streaming workflows.
+
+## How to use it
+
+> **Warning:** Make sure you have a stable internet connection and review the package lists before running the script.
+
+1. Install Git if necessary:
+
    ```bash
    sudo pacman -S git
+   ```
 
-2. **Clone the repo**
+2. Clone the repository:
+
    ```bash
-   git clone [https://github.com/Tasesho/script-Arch-post-install.git](https://github.com/Tasesho/script-Arch-post-install.git)
+   git clone https://github.com/Tasesho/script-Arch-post-install.git
    cd script-Arch-post-install
+   ```
 
-3. **Give execution Permission**
+3. Make the script executable:
+
    ```bash
-   chmod +x post-install.sh
+   chmod +x install.sh
+   ```
 
-4. **Run the script**
+4. Run it:
+
    ```bash
-   ./post-install.sh
+   ./install.sh
+   ```
 
+## Recent changes
 
+- Removed all graphics-driver packages, including Mesa, Vulkan Radeon packages, and `xf86-video-amdgpu`.
+- Removed AMD Fiji/GCN 3-specific modprobe configuration.
+- Kept package installation limited to pacman and yay.
+- Added a dedicated official-repository software package group.
+- Added `obs-studio` to the official pacman packages.
+- Added the detected AUR packages `oracle-datamodeler`, `psysonic`, `vesktop`, and `vscodium-bin`.
+- Removed the library-style `lib32-mangohud` package from the gaming list.
+- Updated the completion message so it no longer claims that drivers were installed.
+- Corrected the usage instructions to reference `install.sh`.
 
 ## Author
 

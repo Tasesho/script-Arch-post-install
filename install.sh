@@ -39,21 +39,6 @@ else
 fi
 
 
-
-DRIVERS=(
-    "mesa"
-    "lib32-mesa"
-    "vulkan-radeon"
-    "lib32-vulkan-radeon"
-    "xf86-video-amdgpu"
-)
-
-echo -e "${VERDE}Instalando Drivers graficos...${NC}"
-for d in "${DRIVERS[@]}"; do
-    instalar "$d"
-done
-
-
 GRAPHICS=(
     "hyprland"
     "waybar"
@@ -74,7 +59,6 @@ done
 GAMING=(
     "steam"
     "mangohud"
-    "lib32-mangohud"
 )
 
 echo -e "${VERDE}Instalando Gaming...${NC}"
@@ -94,13 +78,69 @@ for co in "${CODING[@]}"; do
     instalar "$co"
 done
 
+SOFTWARE=(
+    "7zip"
+    "alacritty"
+    "ark"
+    "bluez"
+    "bluez-utils"
+    "btop"
+    "dolphin"
+    "fastfetch"
+    "firefox"
+    "filelight"
+    "fwupd"
+    "git"
+    "github-cli"
+    "gwenview"
+    "haruna"
+    "kate"
+    "kcalc"
+    "kdeconnect"
+    "konsole"
+    "meld"
+    "micro"
+    "nicotine+"
+    "networkmanager"
+    "networkmanager-openvpn"
+    "obs-studio"
+    "obsidian"
+    "openssh"
+    "partitionmanager"
+    "pavucontrol"
+    "pipewire-alsa"
+    "pipewire-pulse"
+    "prismlauncher"
+    "protonup-qt"
+    "power-profiles-daemon"
+    "spectacle"
+    "steam"
+    "sudo"
+    "ufw"
+    "unrar"
+    "unzip"
+    "usbutils"
+    "vim"
+    "vlc-plugins-all"
+    "wget"
+    "wireplumber"
+)
+
+echo -e "${VERDE}Instalando software desde los repositorios oficiales...${NC}"
+for s in "${SOFTWARE[@]}"; do
+    instalar "$s"
+done
+
 PacAUR=(
     "visual-studio-code-bin"
     "wlogout"
     "swww"
     "swaync"
     "brave-bin"
-    "vesktop-bin" 
+    "vesktop"
+    "oracle-datamodeler"
+    "psysonic"
+    "vscodium-bin"
 )
 
 echo -e "${VERDE}Instalando paquetes desde AUR...${NC}"
@@ -108,18 +148,11 @@ for a in "${PacAUR[@]}"; do
     AUR "$a"
 done
 
-
-echo -e "${VERDE}Configurando soporte para arquitectura Fiji (GCN 3)...${NC}"
-echo 'options amdgpu si_support=1 cik_support=1' | sudo tee /etc/modprobe.d/amdgpu.conf
-echo 'options radeon si_support=0 cik_support=0' | sudo tee /etc/modprobe.d/radeon.conf
-
-
-
 # --- MENSAJE FINAL ---
 echo -e "\n${VERDE}#######################################################${NC}"
 echo -e "${VERDE}             INSTALACIÓN COMPLETADA CON EXITO          ${NC}"
 echo -e "${VERDE}#######################################################${NC}"
-echo -e "${AZUL}1. Se han instalado los drivers AMD y Gaming.${NC}"
+echo -e "${AZUL}1. Paquetes del entorno gráfico y gaming instalados.${NC}"
 echo -e "${AZUL}2. Hyprland y herramientas están listas.${NC}"
 echo -e "${AZUL}3. Entorno de coding configurado.${NC}"
 echo -e "${AZUL}4. Apps de AUR instaladas.${NC}"
